@@ -1,7 +1,7 @@
 SOURCES=$(wildcard src/*.c)
 OBJECTS=$(SOURCES:.c=.o)
-ETTY_CFLAGS=-std=gnu99 -Iinclude -lutil
-NAME=ryte
+MOTH_CFLAGS=-std=gnu99 -Iinclude -lutil
+NAME=moth
 LIB=${NAME}.so
 OUT_DIR=lib
 CLEAN=${OBJECTS} ${OUT_DIR}/${LIB}
@@ -22,7 +22,7 @@ install: ${LIB}
 	mandb
 
 src/%.o : src/%.c
-	gcc -fpic -c $< -o $@ ${ETTY_CFLAGS}
+	gcc -fpic -c $< -o $@ ${MOTH_CFLAGS}
 
 ${OBJECTS}: ${SOURCES}
 

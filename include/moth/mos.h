@@ -4,7 +4,7 @@
 #include<stdlib.h>
 
 typedef enum mos_mode_e {
-    MODE_IMM,
+    MODE_IMM = 0,
     MODE_ZPG,
     MODE_ZPGX,
     MODE_ABS,
@@ -13,16 +13,15 @@ typedef enum mos_mode_e {
     MODE_INDX,
     MODE_INDY,
     MODE_IMPLIED
-} addr_mode_t;
+} mos_mode_t;
 
 typedef enum mos_code_e {
-    adc,
-    sdc,
-} code_t;
+    MOS_ADC = 0,
+} mos_code_t;
 
 typedef struct mos_insn_s {
-    code_t code;
-    addr_mode_t mode;
+    mos_code_t code;
+    mos_mode_t mode;
 } mos_insn_t;
 
 enum {
