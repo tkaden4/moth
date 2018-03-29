@@ -1,11 +1,18 @@
 SOURCES=$(wildcard src/*.c)
 OBJECTS=$(SOURCES:.c=.o)
-MOTH_CFLAGS=-std=gnu99 -Iinclude -lutil
+MOTH_CFLAGS=-std=gnu99 -Iinclude -Wall -Werror -Wextra
 NAME=moth
 LIB=${NAME}.so
 OUT_DIR=lib
 CLEAN=${OBJECTS} ${OUT_DIR}/${LIB}
 OUT_OBJ=
+
+HAS_CCACHE := $(shell command -v ccache 2> /dev/null)
+ifdef HAS_CCACHE
+	CC := ccache $(CC)
+else
+	CC := $(CC)
+endif
 
 ${OUT_DIR}:
 	mkdir $@
@@ -22,9 +29,9 @@ install: ${LIB}
 	mandb
 
 src/%.o : src/%.c
-	gcc -fpic -c $< -o $@ ${MOTH_CFLAGS}
+	${CC} -fpic -c $< -o $@ ${MOTH_CFLAGS}
 
 ${OBJECTS}: ${SOURCES}
 
 ${LIB} : ${OBJECTS}
-	gcc -fpic -shared -o $@ ${OBJECTS}
+	${CC} -fpic -shared -o $@ ${OBJECTS} ${MOTH_CFLAGS}
