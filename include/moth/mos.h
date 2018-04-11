@@ -8,6 +8,7 @@
 typedef enum mos_mode_e {
     MODE_A,
     MODE_IMM,
+    MODE_IND,
     MODE_IND_ZPGX,
     MODE_INDZPG_Y,
     MODE_ZPG,
