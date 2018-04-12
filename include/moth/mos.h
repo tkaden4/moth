@@ -83,16 +83,6 @@ typedef enum mos_code_e {
 } mos_code_t;
 
 typedef struct mos_arg_s {
-    enum {
-        I8,
-        I16,
-        I32
-    } sz;
-    union {
-        uint8_t i8;
-        uint16_t i16;
-        uint32_t i32;
-    } u;
 } mos_arg_t;
 
 typedef struct mos_insn_s {
