@@ -8,7 +8,6 @@ Discrete units of code are encapsulated via `moth_node_t`s.
 All operations work on these.
 
 ### Using Nodes
-Node usage is akin to the following:
 ```C
 moth_node_t node;
 moth_node_init(&node);
