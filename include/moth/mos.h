@@ -6,7 +6,7 @@
 #include<moth/buf.h>
 
 typedef enum mos_mode_e {
-    MODE_A,
+    MODE_A = 0,
     MODE_IMM,
     MODE_IND,
     MODE_IND_ZPGX,
@@ -24,7 +24,7 @@ typedef enum mos_mode_e {
 } mos_mode_t;
 
 typedef enum mos_code_e {
-    MOS_ADC,
+    MOS_ADC = 0,
     MOS_AND,
     MOS_ASL,
     MOS_BCC,
@@ -79,7 +79,8 @@ typedef enum mos_code_e {
     MOS_TSX,
     MOS_TXA,
     MOS_TXS,
-    MOS_TYA
+    MOS_TYA,
+    MOS_MAX_OP
 } mos_code_t;
 
 #define MOS_IMM(_imm) { .type = MOS_ARG_IMM, .u = { .imm = _imm }}
@@ -98,4 +99,9 @@ typedef struct mos_insn_s {
     mos_mode_t mode;
 } mos_insn_t;
 
-int mos_as_bytes(const mos_insn_t *, buf_t *);
+typedef enum err {
+    MOS_INVALID_MODE = 1,
+    MOS_INVALID_OP = 2
+} err;
+
+err mos_as_bytes(const mos_insn_t *, buf_t *);

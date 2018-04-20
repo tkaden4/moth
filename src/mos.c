@@ -1,5 +1,7 @@
 #include<moth/mos.h>
 
+#include<stdbool.h>
+
 typedef struct op_def_s {
     mos_code_t code;
     mos_mode_t mode;
@@ -155,20 +157,28 @@ static op_def_t defs[] = {
 
 static int op_as_byte(mos_code_t code, mos_mode_t mode, uint8_t *res)
 {
+    bool code_was_found = false;
     for(size_t i = 0; i < sizeof(defs)/sizeof(defs[0]); ++i){
-        if(defs[i].code == code && defs[i].mode == mode){
-            *res = defs[i].byte;
-            return 0;
+        if(defs[i].code == code){
+            code_was_found = true;
+            if(defs[i].mode == mode){
+                *res = defs[i].byte;
+                return 0;
+            }
         }
     }
-    return 1;
+    if(code_was_found){
+        return MOS_INVALID_MODE;
+    }
+    return MOS_INVALID_OP;
 }
 
-int mos_as_bytes(const mos_insn_t *insn, buf_t *buf)
+err mos_as_bytes(const mos_insn_t *insn, buf_t *buf)
 {
     uint8_t op_byte;
-    if(op_as_byte(insn->code, insn->mode, &op_byte)){
-        return 1;
+    err error;
+    if((error = op_as_byte(insn->code, insn->mode, &op_byte))){
+        return error;
     }
     buf_push(buf, &op_byte, 1);
     return 0;
