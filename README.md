@@ -23,7 +23,7 @@ moth_node_free(&node);
 ```C
 moth_node_t node;
 // init code ...
-moth_insn_t op = MOTH_INSN(MOS_LDA, MOTH_IMM(0xff));
+moth_insn_t op = MOTH_INSN(MOS_LDA, MODE_IMM, MOTH_IMM(0xff));
 moth_node_push(&node, &op);
 // ...
 ```
