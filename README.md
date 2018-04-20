@@ -3,6 +3,10 @@
 Moth is a library for generating MOS 6502 bytecode, removing the
 need for translation logic in compilers and assemblers.
 
+Moth is a *work in progress*, and any help would be appreciated,
+especially if you notice a bug in the translation table, which is
+highly prone to small errors.
+
 ## Usage
 Discrete units of code are encapsulated via `moth_node_t`s.
 All operations work on these.

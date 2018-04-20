@@ -14,10 +14,19 @@ typedef struct moth_node_s {
     buf_t buf;
 } moth_node_t;
 
+#define MAX_ARGS 2
+
 typedef struct moth_insn_s {
     mos_code_t code;
-    mos_arg_t args[2];
+    size_t nargs;
+    mos_arg_t args[MAX_ARGS];
 } moth_insn_t;
+
+#define _NARGS(...) \
+    ((size_t)(sizeof((mos_arg_t[]){ __VA_ARGS__ })))
+
+#define MOTH_INSN(code, ...) \
+    ((moth_insn_t){ code, _NARGS(__VA_ARGS__), { __VA_ARGS__ } })
 
 int moth_node_init(moth_node_t *);
 int moth_node_free(moth_node_t *);
