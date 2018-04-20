@@ -7,6 +7,12 @@ Moth is a *work in progress*, and any help would be appreciated,
 especially if you notice a bug in the translation table, which is
 highly prone to small errors.
 
+## TODO
+- Improve lookup speed through cache
+- Allow string lookups
+- Add decompilation
+- Potentially add different headers
+
 ## Usage
 Discrete units of code are encapsulated via `moth_node_t`s.
 All operations work on these.
