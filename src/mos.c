@@ -151,9 +151,11 @@ static op_def_t defs[] = {
     cc10_ext(MOS_INC, 0b111)
 };
 
+#include<stdio.h>
+
 static int op_as_byte(mos_code_t code, mos_mode_t mode, uint8_t *res)
 {
-    for(size_t i = 0; i < sizeof(defs); ++i){
+    for(size_t i = 0; i < sizeof(defs)/sizeof(defs[0]); ++i){
         if(defs[i].code == code && defs[i].mode == mode){
             *res = defs[i].byte;
             return 0;
@@ -162,12 +164,12 @@ static int op_as_byte(mos_code_t code, mos_mode_t mode, uint8_t *res)
     return 1;
 }
 
-int mos_as_bytes(mos_insn_t *insn, buf_t *buf)
+int mos_as_bytes(const mos_insn_t *insn, buf_t *buf)
 {
-    (void) buf;
     uint8_t op_byte;
     if(op_as_byte(insn->code, insn->mode, &op_byte)){
         return 1;
     }
+    buf_push(buf, &op_byte, 1);
     return 0;
 }

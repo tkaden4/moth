@@ -98,4 +98,4 @@ typedef struct mos_insn_s {
     mos_mode_t mode;
 } mos_insn_t;
 
-int mos_as_bytes(mos_insn_t *, buf_t *);
+int mos_as_bytes(const mos_insn_t *, buf_t *);
