@@ -83,16 +83,11 @@ typedef enum mos_code_e {
     MOS_MAX_OP
 } mos_code_t;
 
-#define MOS_IMM(_imm) { .type = MOS_ARG_IMM, .u = { .imm = _imm }}
-
-typedef struct mos_arg_s {
-    enum {
-        MOS_ARG_IMM
-    } type;
-    union {
-        uint8_t imm;
-    } u;
-} mos_arg_t;
+typedef enum mos_reg_e {
+    MOS_A,
+    MOS_X,
+    MOS_Y
+} mos_reg_t;
 
 typedef struct mos_insn_s {
     mos_code_t code;

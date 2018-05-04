@@ -16,7 +16,7 @@ void buf_free(buf_t *buf)
     free(buf->data);
 }
 
-void buf_push(buf_t *buf, void *data, size_t sz)
+void buf_push(buf_t *buf, const void *data, size_t sz)
 {
     if(buf->_sz + sz > buf->_cap){
         buf->_cap = buf->_cap + sz;
@@ -24,5 +24,4 @@ void buf_push(buf_t *buf, void *data, size_t sz)
     }
     memmove(buf->data + buf->_sz, data, sz);
     buf->_sz += sz;
-
 }

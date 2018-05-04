@@ -8,7 +8,7 @@ typedef struct op_def_s {
     uint8_t byte;
 } op_def_t;
 
-#define bits(aaa, bbb, cc) (((aaa) << 4) | ((bbb) << 2) | (cc))
+#define bits(aaa, bbb, cc) (((aaa) << 5) | ((bbb) << 2) | (cc))
 
 #define defop(op, mode, code) { op, mode, code }
 
