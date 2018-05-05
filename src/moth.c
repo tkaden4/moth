@@ -12,6 +12,17 @@ int moth_node_free(moth_node_t *node)
     return 0;
 }
 
+int moth_translate(moth_insn_t *insn, buf_t *buf)
+{
+    moth_node_t node;
+    moth_node_init(&node);
+    moth_node_push(&node, insn);
+    moth_node_get_bytes(&node, buf);
+    moth_node_free(&node);
+    // TODO fix
+    return 0;
+}
+
 void moth_node_push(moth_node_t *node, const moth_insn_t *insn)
 {
     mos_as_bytes(&insn->insn, &node->buf);

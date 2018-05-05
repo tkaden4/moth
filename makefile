@@ -24,12 +24,10 @@ clean:
 	rm ${CLEAN}
 
 install: ${LIB}
-	# TODO correct
 	sudo cp ${LIB} /usr/local/lib/${NAME}
-	mandb
 
 src/%.o : src/%.c
-	${CC} -fpic -c $< -o $@ ${MOTH_CFLAGS}
+	${CC} -fPIC -c $< -o $@ ${MOTH_CFLAGS}
 
 ${OBJECTS}: ${SOURCES}
 

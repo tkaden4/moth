@@ -13,3 +13,5 @@
 # Executables
 *.exe
 *.out
+
+/lib
